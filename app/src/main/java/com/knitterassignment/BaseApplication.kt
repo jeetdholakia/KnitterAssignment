@@ -1,4 +1,4 @@
-package com.payo.knitterassignment
+package com.knitterassignment
 
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger

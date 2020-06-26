@@ -1,6 +1,6 @@
 package dev.jeetdholakia.androidmvvmdagger.di.main
 
-import com.payo.knitterassignment.ui.main.fragment.TimelineFragment
+import com.knitterassignment.ui.main.fragment.TimelineFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

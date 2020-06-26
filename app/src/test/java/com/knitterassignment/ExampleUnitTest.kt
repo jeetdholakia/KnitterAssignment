@@ -1,4 +1,4 @@
-package com.payo.knitterassignment
+package com.knitterassignment
 
 import org.junit.Test
 

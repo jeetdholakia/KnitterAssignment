@@ -1,7 +1,7 @@
 package com.payo.transactionanalysis.di
 
 import android.app.Application
-import com.payo.knitterassignment.BaseApplication
+import com.knitterassignment.BaseApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

@@ -1,7 +1,7 @@
 package dev.jeetdholakia.androidmvvmdagger.di.main
 
 import androidx.lifecycle.ViewModel
-import com.payo.knitterassignment.viewmodel.main.MainViewModel
+import com.knitterassignment.viewmodel.main.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
