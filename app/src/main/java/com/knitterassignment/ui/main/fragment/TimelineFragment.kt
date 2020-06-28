@@ -41,7 +41,7 @@ class TimelineFragment : DaggerFragment() {
 
     private fun setupObservers(){
      mainViewModel.getPosts().observe(viewLifecycleOwner, Observer {
-         Logger.d("Posts received")
+         Logger.d("Posts received ${it.size}")
      })
     }
 }
