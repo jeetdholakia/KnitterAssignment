@@ -1,4 +1,4 @@
-package com.knitterassignment.repository.db
+package com.knitterassignment.repository.db.posts
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface PostsDAO {
+interface PostDAO {
 
     @Throws
     @Insert(onConflict = OnConflictStrategy.IGNORE)

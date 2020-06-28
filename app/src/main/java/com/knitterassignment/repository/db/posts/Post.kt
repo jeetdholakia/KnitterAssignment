@@ -1,13 +1,13 @@
-package com.knitterassignment.repository.db
+package com.knitterassignment.repository.db.posts
 
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.knitterassignment.util.Constants.Companion.tableName
+import com.knitterassignment.util.Constants.Companion.postsTableName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = tableName)
+@Entity(tableName = postsTableName)
 data class Post(
     @PrimaryKey var id: String,
     var userID: String,

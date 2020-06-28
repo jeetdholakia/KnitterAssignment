@@ -4,9 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.knitterassignment.repository.CommentsRepository
+import com.knitterassignment.repository.CommentsRepositoryImpl
 import com.knitterassignment.repository.PostsRepository
 import com.knitterassignment.repository.PostsRepositoryImpl
-import com.knitterassignment.repository.db.Post
+import com.knitterassignment.repository.db.comments.Comment
+import com.knitterassignment.repository.db.posts.Post
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,33 +19,42 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
 
     private var posts: MutableLiveData<List<Post>> = MutableLiveData()
+    private var comments: MutableLiveData<List<Comment>> = MutableLiveData()
     private val postsRepository: PostsRepository = PostsRepositoryImpl(getApplication())
+    private val commentsRepository: CommentsRepository = CommentsRepositoryImpl(getApplication())
 
     init {
         CoroutineScope(Dispatchers.Main).launch {
-            getPost()
+            fetchPosts()
+            fetchComments()
         }
     }
 
-    private suspend fun getPost() {
-//        var responses = listOf<Result>()
-//        CoroutineScope(Dispatchers.IO).launch {
-//            responses = PostsService.getPostsService().getPosts(1).result
-//            withContext(Dispatchers.Main) {
-//                posts.value = responses
-//            }
-//        }
-
-
+    private suspend fun fetchPosts() {
         var responses = listOf<Post>()
         CoroutineScope(Dispatchers.IO).launch {
-            postsRepository.getPosts().let {
-                responses = it!!
-            }
+            val result = postsRepository.getPosts()
 
             withContext(Dispatchers.Main) {
-                if (responses.isNotEmpty())
-                posts.value = responses
+                if (result != null) {
+                    if (result.isNotEmpty()) {
+                        posts.value = result
+                    }
+                }
+            }
+        }
+    }
+
+    private suspend fun fetchComments() {
+        var responses = listOf<Comment>()
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = commentsRepository.getComments()
+            withContext(Dispatchers.Main) {
+                if (result != null) {
+                    if (result.isNotEmpty()) {
+                        comments.value = result
+                    }
+                }
             }
         }
     }
@@ -51,4 +63,7 @@ class MainViewModel @Inject constructor(application: Application) : AndroidViewM
         return posts
     }
 
+    fun getComments(): LiveData<List<Comment>> {
+        return comments
+    }
 }

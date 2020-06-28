@@ -1,4 +1,6 @@
-package com.knitterassignment.repository.network.model
+package com.knitterassignment.repository.network.model.posts
+
+import com.knitterassignment.repository.network.model.posts.Links
 
 data class Result(
     val _links: Links,

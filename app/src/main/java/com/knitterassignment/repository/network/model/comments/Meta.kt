@@ -1,4 +1,4 @@
-package com.knitterassignment.repository.network.model
+package com.knitterassignment.repository.network.model.comments
 
 data class Meta(
     val code: Int,

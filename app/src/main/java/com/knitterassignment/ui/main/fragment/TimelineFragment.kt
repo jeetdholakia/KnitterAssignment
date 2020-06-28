@@ -16,6 +16,7 @@ import javax.inject.Inject
 class TimelineFragment : DaggerFragment() {
 
     private val TAG = "TimelineFragment"
+
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
     private lateinit var mainViewModel: MainViewModel
@@ -39,9 +40,13 @@ class TimelineFragment : DaggerFragment() {
         setupObservers()
     }
 
-    private fun setupObservers(){
-     mainViewModel.getPosts().observe(viewLifecycleOwner, Observer {
-         Logger.d("Posts received ${it.size}")
-     })
+    private fun setupObservers() {
+        mainViewModel.getPosts().observe(viewLifecycleOwner, Observer {
+            Logger.d("Posts received ${it.size}")
+        })
+
+        mainViewModel.getComments().observe(viewLifecycleOwner, Observer {
+            Logger.d("Comments received ${it.size}")
+        })
     }
 }

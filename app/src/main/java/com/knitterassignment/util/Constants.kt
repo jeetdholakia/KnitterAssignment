@@ -5,6 +5,9 @@ class Constants {
         const val baseUrl = "https://gorest.co.in/public-api/"
         const val accessTokenKey = "access-token"
         const val accessTokenValue = "dv8RtNyd5a6ubIJhHlPCNkIVyedc8hx4RnGD"
-        const val tableName = "postsTable"
+        const val postsTableName = "postsTable"
+        const val commentsTableName = "commentsTable"
+        const val postsEndpoint = "posts"
+        const val commentsEndpoint = "comments"
     }
 }

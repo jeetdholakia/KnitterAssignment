@@ -1,7 +1,7 @@
 package com.knitterassignment.repository.network
 
 import com.knitterassignment.BuildConfig
-import com.knitterassignment.util.Constants.Companion.baseUrl
+import com.knitterassignment.util.Constants
 import com.orhanobut.logger.Logger
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -9,9 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-object PostsService {
-
+object CommentsService {
     private val myHTTPInterceptor = OkHttpClient().newBuilder()
         .addInterceptor(HTTPInterceptor())
         .addInterceptor(Interceptor.invoke {
@@ -30,12 +28,12 @@ object PostsService {
         })
         .build()
 
-    fun getPostsService(): PostApi {
+    fun getCommentsService(): CommentsApi {
         return Retrofit.Builder()
             .client(myHTTPInterceptor)
-            .baseUrl(baseUrl)
+            .baseUrl(Constants.baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(PostApi::class.java)
+            .create(CommentsApi::class.java)
     }
 }

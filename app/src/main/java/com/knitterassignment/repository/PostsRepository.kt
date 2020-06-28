@@ -1,6 +1,6 @@
 package com.knitterassignment.repository
 
-import com.knitterassignment.repository.db.Post
+import com.knitterassignment.repository.db.posts.Post
 
 interface PostsRepository {
 
