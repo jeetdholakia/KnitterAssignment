@@ -8,7 +8,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.payo.knitterassignment"
+        applicationId "com.knitterassignment"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
@@ -32,10 +32,14 @@ android {
     dataBinding {
         enabled = true
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
-// Core dependencies
+    // Core dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -43,6 +47,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     // Testing dependencies
     testImplementation 'junit:junit:4.13'
@@ -63,7 +69,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
-
     // ViewModel and LiveData architecture components
     def lifecycle_version = "2.2.0"
     def arch_version = "2.1.0"
@@ -78,7 +83,6 @@ dependencies {
     // Logger for better and easier Logging
     implementation 'com.orhanobut:logger:2.2.0'
 
-
     // Room ORM
     def room_version = "2.2.2"
     implementation "androidx.room:room-runtime:2.2.5"
@@ -90,4 +94,24 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
+    // Glide library
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation("com.squareup.okhttp3:okhttp:4.7.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.5.0")
+
+    // Paging library
+    //adding paging
+    def paging_version = "2.1.2"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // rx
+    implementation 'io.reactivex:rxjava:1.2.7'
+
+    // Parcelable
+    implementation 'org.parceler:parceler-api:1.1.13'
+    annotationProcessor 'org.parceler:parceler:1.1.13'
 }
