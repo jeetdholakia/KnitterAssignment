@@ -10,9 +10,7 @@ import com.orhanobut.logger.Logger
 
 class PostsRepositoryImpl(var context: Context): PostsRepository {
 
-    private val postsDB by lazy { PostsDatabase(
-        context
-    ).postsDAO() }
+    private val postsDB by lazy { PostsDatabase(context).postsDAO() }
     private val postsService =  PostsService.getPostsService()
     private var pageNumber: Int = 0
 

@@ -33,7 +33,7 @@ class MainViewModel @Inject constructor(application: Application) : AndroidViewM
     }
 
     private suspend fun fetchPosts() {
-        var responses = listOf<Post>()
+        listOf<Post>()
         CoroutineScope(Dispatchers.IO).launch {
             val result = postsRepository.getPosts()
 
@@ -49,7 +49,7 @@ class MainViewModel @Inject constructor(application: Application) : AndroidViewM
     }
 
     private suspend fun fetchComments() {
-        var responses = listOf<Comment>()
+        listOf<Comment>()
         CoroutineScope(Dispatchers.IO).launch {
             val result = commentsRepository.getComments()
             withContext(Dispatchers.Main) {

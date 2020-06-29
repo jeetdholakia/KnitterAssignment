@@ -11,9 +11,7 @@ import com.orhanobut.logger.Logger
 class CommentsRepositoryImpl(var context: Context):
     CommentsRepository {
 
-    private val commentsDB: CommentDAO by lazy { CommentDatabase(
-        context
-    ).commentDAO() }
+    private val commentsDB: CommentDAO by lazy { CommentDatabase(context).commentDAO() }
     private val commentsService =  CommentsService.getCommentsService()
     private var pageNumber: Int = 0
 
