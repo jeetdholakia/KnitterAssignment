@@ -4,11 +4,12 @@ import android.content.Context
 import com.knitterassignment.repository.db.comments.Comment
 import com.knitterassignment.repository.db.comments.CommentDAO
 import com.knitterassignment.repository.db.comments.CommentDatabase
-import com.knitterassignment.repository.network.CommentsService
+import com.knitterassignment.repository.network.comments.CommentsService
 import com.knitterassignment.util.NetworkUtil
 import com.orhanobut.logger.Logger
 
-class CommentsRepositoryImpl(var context: Context): CommentsRepository {
+class CommentsRepositoryImpl(var context: Context):
+    CommentsRepository {
 
     private val commentsDB: CommentDAO by lazy { CommentDatabase(
         context
@@ -18,7 +19,6 @@ class CommentsRepositoryImpl(var context: Context): CommentsRepository {
 
     override suspend fun getComments(): List<Comment>? {
         return if(NetworkUtil.isOnline(context)) {
-            Logger.d("Device is online")
             val response = commentsService.getComments(pageNumber++)
             val result =  response.result
             pageNumber = response._meta.currentPage
@@ -37,7 +37,7 @@ class CommentsRepositoryImpl(var context: Context): CommentsRepository {
         } else {
             Logger.d("Device is offline")
             if(commentsDB.getComments().isNotEmpty()) {
-                Logger.d("Some data is present in offline state")
+                Logger.d("Data is present in offline state")
                 return commentsDB.getComments()
             } else {
                 Logger.d("No data is present in offline state, show an error here")

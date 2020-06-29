@@ -1,4 +1,4 @@
-package com.knitterassignment.repository.network
+package com.knitterassignment.repository.network.comments
 
 import com.knitterassignment.repository.network.model.comments.CommentsResponse
 import com.knitterassignment.util.Constants.Companion.commentsEndpoint

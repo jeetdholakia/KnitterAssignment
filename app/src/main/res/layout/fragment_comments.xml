@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.posts.fragment.TimelineFragment">
+    tools:context=".ui.comments.CommentsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/postsRecyclerview"
+        android:id="@+id/commentsRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -18,4 +19,5 @@
         android:indeterminate="true"
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_centerInParent="true"/>
+
 </RelativeLayout>

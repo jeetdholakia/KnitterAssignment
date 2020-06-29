@@ -1,50 +1,42 @@
-package dev.jeetdholakia.androidmvvmdagger.di
+package com.knitterassignment.repository.network.HTTPClient
 
 import com.knitterassignment.BuildConfig
-import com.knitterassignment.repository.network.HTTPClient.HTTPInterceptor
 import com.knitterassignment.util.Constants
-import dagger.Module
-import dagger.Provides
+import com.orhanobut.logger.Logger
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
-@Module
-class AppModule {
-
+class HTTPClient {
     companion object {
-        @Singleton
-        @Provides
-        fun provideHttpClient(): OkHttpClient {
+        private fun getHttpClient(): OkHttpClient {
             return OkHttpClient().newBuilder()
                 .addInterceptor(HTTPInterceptor())
                 .addInterceptor(Interceptor.invoke {
                     val request = it.request()
+
                     val response = it.proceed(request)
-                    if (response.code == 404) {
+
+                    if(response.code == 404) {
+                        Logger.d("Error in fetching")
                         return@invoke response
                     }
                     return@invoke response
                 })
                 .addInterceptor(HttpLoggingInterceptor().apply {
-                    level =
-                        if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+                    level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
                 })
                 .build()
         }
 
-        @Singleton
-        @Provides
-        fun provideRetrofitInstance(httpClient: OkHttpClient): Retrofit {
+        fun getNetworkService(): Retrofit {
             return Retrofit.Builder()
-                .client(httpClient)
+                .client(getHttpClient())
                 .baseUrl(Constants.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
-
     }
 }

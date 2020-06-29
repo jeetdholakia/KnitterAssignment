@@ -22,11 +22,13 @@ class MainViewModel @Inject constructor(application: Application) : AndroidViewM
     private var comments: MutableLiveData<List<Comment>> = MutableLiveData()
     private val postsRepository: PostsRepository = PostsRepositoryImpl(getApplication())
     private val commentsRepository: CommentsRepository = CommentsRepositoryImpl(getApplication())
+    private var isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         CoroutineScope(Dispatchers.Main).launch {
             fetchPosts()
             fetchComments()
+            isLoading.value = true
         }
     }
 
@@ -39,6 +41,7 @@ class MainViewModel @Inject constructor(application: Application) : AndroidViewM
                 if (result != null) {
                     if (result.isNotEmpty()) {
                         posts.value = result
+                        isLoading.value = false
                     }
                 }
             }
@@ -53,6 +56,7 @@ class MainViewModel @Inject constructor(application: Application) : AndroidViewM
                 if (result != null) {
                     if (result.isNotEmpty()) {
                         comments.value = result
+                        isLoading.value = false
                     }
                 }
             }
@@ -65,5 +69,23 @@ class MainViewModel @Inject constructor(application: Application) : AndroidViewM
 
     fun getComments(): LiveData<List<Comment>> {
         return comments
+    }
+
+    fun postsEndReached() {
+        CoroutineScope(Dispatchers.Main).launch {
+            isLoading.value = true
+            fetchPosts()
+        }
+    }
+
+    fun commentsEndReached() {
+        CoroutineScope(Dispatchers.Main).launch {
+            isLoading.value = true
+            fetchComments()
+        }
+    }
+
+    fun getIsLoading(): MutableLiveData<Boolean> {
+        return isLoading
     }
 }

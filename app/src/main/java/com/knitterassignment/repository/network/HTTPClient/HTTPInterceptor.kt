@@ -1,4 +1,4 @@
-package com.knitterassignment.repository.network
+package com.knitterassignment.repository.network.HTTPClient
 
 import com.knitterassignment.util.Constants.Companion.accessTokenKey
 import com.knitterassignment.util.Constants.Companion.accessTokenValue

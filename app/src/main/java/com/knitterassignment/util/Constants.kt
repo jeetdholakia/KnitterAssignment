@@ -9,5 +9,6 @@ class Constants {
         const val commentsTableName = "commentsTable"
         const val postsEndpoint = "posts"
         const val commentsEndpoint = "comments"
+        const val loadingPageSize = 20
     }
 }
